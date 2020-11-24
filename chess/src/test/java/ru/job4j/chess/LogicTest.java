@@ -6,18 +6,42 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 import ru.job4j.chess.firuges.black.BishopBlack;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+
 public class LogicTest {
 
     @Ignore
-    @Test
+    @Test(expected = OccupiedCellException.class)
     public void move()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.move(Cell.C1, Cell.H6);
+
+        assertThat(logic, is (new OccupiedCellException()));
     }
 
-    public void testTestMove() {
+    @Test(expected = IllegalStateException.class)
+    public void moveC1doD3()
+            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+        Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        logic.move(Cell.C1, Cell.C3);
 
+        assertThat(logic, is (new IllegalStateException()));
     }
+
+    @Test(expected = FigureNotFoundException.class)
+    public void moveNulldoD3()
+            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+        Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        logic.move(Cell.C3, Cell.C3);
+
+        assertThat(logic, is (new FigureNotFoundException()));
+    }
+
+
 }

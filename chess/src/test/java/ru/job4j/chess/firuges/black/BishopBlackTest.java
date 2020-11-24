@@ -34,7 +34,7 @@ public class BishopBlackTest extends TestCase {
     public void testWay() throws ImpossibleMoveException {
         Figure black = new BishopBlack(Cell.C1);
         //black.way(Cell.G5);
-        Cell[] arrayResult = black.way(Cell.D1);
+        Cell[] arrayResult = black.way(Cell.G5);
         Cell[] array = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         //Cell[] array = {Cell.F4, Cell.E3, Cell.D2, Cell.C1};
         assertThat(arrayResult, is(array));
