@@ -23,14 +23,14 @@ public class LogicTest {
         assertThat(logic, is (new OccupiedCellException()));
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test(expected = ImpossibleMoveException.class)
     public void moveC1doD3()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        logic.move(Cell.C1, Cell.C3);
+        logic.move(Cell.C1, Cell.D3);
 
-        assertThat(logic, is (new IllegalStateException()));
+        assertThat(logic, is (new ImpossibleMoveException()));
     }
 
     @Test(expected = FigureNotFoundException.class)
